@@ -16,7 +16,7 @@ namespace TicTacToe
         /// <summary>
         /// Holds the current results of cells in the active game
         /// </summary>
-        private MarkType[] mResults;
+        private Type[] mResults;
 
         /// <summary>
         /// True if it is player 1's turn (X) or player 2's turn (O)
@@ -50,10 +50,10 @@ namespace TicTacToe
         private void NewGame()
         {
             // Create a new blank array of free cells
-            mResults = new MarkType[9];
+            mResults = new Type[9];
 
             for (var i = 0; i < mResults.Length; i++)
-                mResults[i] = MarkType.Free;
+                mResults[i] = Type.Free;
 
             // Make sure Player 1 starts the game
             mPlayer1Turn = true;
@@ -95,11 +95,11 @@ namespace TicTacToe
             var index = column + (row * 3);
 
             // Don't do anything if the cell already has a value in it
-            if (mResults[index] != MarkType.Free)
+            if (mResults[index] != Type.Free)
                 return;
 
             // Set the cell value based on which players turn it is
-            mResults[index] = mPlayer1Turn ? MarkType.Cross : MarkType.Nought;
+            mResults[index] = mPlayer1Turn ? Type.Cross : Type.Nought;
 
             // Set button text to the result
             button.Content = mPlayer1Turn ? "X" : "O";
@@ -126,7 +126,7 @@ namespace TicTacToe
             //
             //  - Row 0
             //
-            if (mResults[0] != MarkType.Free && (mResults[0] & mResults[1] & mResults[2]) == mResults[0])
+            if (mResults[0] != Type.Free && (mResults[0] & mResults[1] & mResults[2]) == mResults[0])
             {
                 // Game ends
                 mGameEnded = true;
@@ -137,7 +137,7 @@ namespace TicTacToe
             //
             //  - Row 1
             //
-            if (mResults[3] != MarkType.Free && (mResults[3] & mResults[4] & mResults[5]) == mResults[3])
+            if (mResults[3] != Type.Free && (mResults[3] & mResults[4] & mResults[5]) == mResults[3])
             {
                 // Game ends
                 mGameEnded = true;
@@ -148,7 +148,7 @@ namespace TicTacToe
             //
             //  - Row 2
             //
-            if (mResults[6] != MarkType.Free && (mResults[6] & mResults[7] & mResults[8]) == mResults[6])
+            if (mResults[6] != Type.Free && (mResults[6] & mResults[7] & mResults[8]) == mResults[6])
             {
                 // Game ends
                 mGameEnded = true;
@@ -165,7 +165,7 @@ namespace TicTacToe
             //
             //  - Column 0
             //
-            if (mResults[0] != MarkType.Free && (mResults[0] & mResults[3] & mResults[6]) == mResults[0])
+            if (mResults[0] != Type.Free && (mResults[0] & mResults[3] & mResults[6]) == mResults[0])
             {
                 // Game ends
                 mGameEnded = true;
@@ -176,7 +176,7 @@ namespace TicTacToe
             //
             //  - Column 1
             //
-            if (mResults[1] != MarkType.Free && (mResults[1] & mResults[4] & mResults[7]) == mResults[1])
+            if (mResults[1] != Type.Free && (mResults[1] & mResults[4] & mResults[7]) == mResults[1])
             {
                 // Game ends
                 mGameEnded = true;
@@ -187,7 +187,7 @@ namespace TicTacToe
             //
             //  - Column 2
             //
-            if (mResults[2] != MarkType.Free && (mResults[2] & mResults[5] & mResults[8]) == mResults[2])
+            if (mResults[2] != Type.Free && (mResults[2] & mResults[5] & mResults[8]) == mResults[2])
             {
                 // Game ends
                 mGameEnded = true;
@@ -204,7 +204,7 @@ namespace TicTacToe
             //
             //  - Top Left Bottom Right
             //
-            if (mResults[0] != MarkType.Free && (mResults[0] & mResults[4] & mResults[8]) == mResults[0])
+            if (mResults[0] != Type.Free && (mResults[0] & mResults[4] & mResults[8]) == mResults[0])
             {
                 // Game ends
                 mGameEnded = true;
@@ -215,7 +215,7 @@ namespace TicTacToe
             //
             //  - Top Right Bottom Left
             //
-            if (mResults[2] != MarkType.Free && (mResults[2] & mResults[4] & mResults[6]) == mResults[2])
+            if (mResults[2] != Type.Free && (mResults[2] & mResults[4] & mResults[6]) == mResults[2])
             {
                 // Game ends
                 mGameEnded = true;
@@ -229,7 +229,7 @@ namespace TicTacToe
             #region No Winners
 
             // Check for no winner and full board
-            if (!mResults.Any(f => f == MarkType.Free))
+            if (!mResults.Any(f => f == Type.Free))
             {
                 // Game ended
                 mGameEnded = true;
